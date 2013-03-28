@@ -1,0 +1,22 @@
+# MongoMorph
+
+MongoMorph is a PHP object that can flatten MongoDB data or restore flattened
+data to MongoDb format. You may find it useful if you want to interface with
+your Mongo database via flat files.
+
+
+## Implementation Example
+
+The most typical use case of MongoMorph is to use it within a command, which
+could look like the following:
+
+    // Code to spin up a new Mongo connection...
+
+    $db = $mongo->selectDb('your-db-here');
+
+    $mongoMorph = new Jmflava\MongoMorph\MongoMorph($db, __DIR__ . '/path/to/morph/dir');
+    if ($argv[1] === 'backup') {
+        $mongoMorph->backup();
+    } elseif ($argv[1] === 'restore') {
+        $mongoMorph->restore();
+    }

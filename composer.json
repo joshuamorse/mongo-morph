@@ -1,0 +1,19 @@
+{
+    "name": "jmflava/mongo-morph",
+    "description": "A PHP object that can flatten MongoDB data or restore flattened data to MongoDb format.",
+    "type": "library",
+    "keywords": ["mongo", "flat"],
+    "authors": [
+        {
+            "name": "Joshua Morse",
+            "homepage": "http://jmflava.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.6"
+    },
+    "autoload": {
+        "psr-0": { "Jmflava\\MongoMorph": "src/" }
+    }
+}
+
