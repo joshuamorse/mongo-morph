@@ -109,13 +109,17 @@ class MongoMorph
                 // Get data from the record file.
                 $data = json_decode(file_get_contents($recordPath), true);
 
-                // Properly set a MongoId object, where applicable.
-                if (isset($data['_id']['$id'])) {
-                    $data['_id'] = new \MongoId($data['_id']['$id']);
-                }
+                if (json_last_error() !== 0) {
+                    echo "Invalid JSON detected in {$recordPath}. Skipping...\n";
+                } else {
+                    // Properly set a MongoId object, where applicable.
+                    if (isset($data['_id']['$id'])) {
+                        $data['_id'] = new \MongoId($data['_id']['$id']);
+                    }
 
-                // Insert the data into the collection.
-                $this->mongo->selectCollection($collection)->insert($data);
+                    // Insert the data into the collection.
+                    $this->mongo->selectCollection($collection)->insert($data);
+                }
             }
         }
     }
